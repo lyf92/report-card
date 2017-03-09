@@ -8,7 +8,7 @@ class StudentContainer{
         for(var i = 4;i < info.length;i++){
             var score = new Object();
 
-            score.subject = info[i].split(':')[0];
+            score.subject = info[i].split(':')[0].trim();
             score.score = Number(info[i].split(':')[1]);
 
             scores.push(score);

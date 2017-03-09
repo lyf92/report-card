@@ -19,7 +19,7 @@ describe("report class", function(){
 
         var report = new Report([stu1, stu2, stu3]);
 
-        report.averageOfAllStudent()
+        report.averageOfAllStudent();
         var result = report.averageOfAll;
         expect(result).toBe(expectValue);
     })

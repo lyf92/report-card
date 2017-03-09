@@ -10,15 +10,23 @@ class Report {
         this.studentsInfo.forEach(function(e){
             sum += e.average;
         });
-        this.averageOfAll = sum/this.studentsInfo.length;
+        this.averageOfAll = this.studentsInfo.length === 0 ? 0 : sum/this.studentsInfo.length;
     }
 
     medianOfAllStudent(){
-        var tmp = this.studentsInfo.sort(function(a,b){
-            return a.sumScore - b.sumScore;
-        });
+        if(this.studentsInfo.length === 0){
+            this.medianOfAll = 0;
+        }
+        else if(this.studentsInfo.length === 1){
+            this.medianOfAll = this.studentsInfo[0].sumScore;
+        }
+        else {
+            var tmp = this.studentsInfo.sort(function (a, b) {
+                return a.sumScore - b.sumScore;
+            });
 
-        this.medianOfAll = tmp[Math.ceil(tmp.length/2) - 1].sumScore;
+            this.medianOfAll = tmp[Math.floor(tmp.length / 2)].sumScore;
+        }
     }
 }
 
