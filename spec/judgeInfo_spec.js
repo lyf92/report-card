@@ -1,6 +1,6 @@
 var judgeInfoModule = require('../app/judgeInfo');
 
-xdescribe("judgeStuInfo test", function(){
+describe("judgeStuInfo test", function(){
 
     it("should return true", function(){
         var expectText = true;
@@ -23,7 +23,7 @@ xdescribe("judgeStuInfo test", function(){
     });
 });
 
-xdescribe("judgeStuNo test", function(){
+describe("judgeStuNo test", function(){
 
     it("should return true", function(){
         var expectText = true;

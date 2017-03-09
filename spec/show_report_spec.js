@@ -2,8 +2,8 @@ var showReportModule = require('../app/show_report');
 var Student = require('../app/model/student').Student;
 
 describe("getSubject", function(){
-    it("should return |66", function(){
-        var expectT = '|66';
+    it("should return |68", function(){
+        var expectT = '|68';
         var scores = [ { subject: '语文', score: 66 },
             { subject: '数学', score: 68 },
             { subject: '英语', score: 70 } ];
@@ -13,7 +13,7 @@ describe("getSubject", function(){
     });
 
     it("should return |-", function(){
-        var expectT = '|66';
+        var expectT = '|-';
         var scores = [ { subject: '语文', score: 66 },
             { subject: '数学', score: 68 },
             { subject: '英语', score: 70 } ];
@@ -33,6 +33,6 @@ describe("getStudentInfoByStuNo", function(){
         var students = [stu1, stu2];
         var result = showReportModule.getStudentInfoByStuNo(students, '00001');
 
-        expect(result.name).toBe(expectT);
+        expect(result[0].name).toBe(expectT);
     });
 });

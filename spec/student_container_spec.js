@@ -1,7 +1,7 @@
 var Student = require('../app/model/student').Student;
 var StudentContainer = require('../app/model/student_container').StudentContainer;
 
-xdescribe("student container", function(){
+describe("student container", function(){
     it("should return student info", function(){
         var student = new Student('张三', '00001', 'q', 2, [{subject:'语文', score:70}, {subject:'数学', score:90}]);
 

@@ -30,6 +30,7 @@ function inputInfo(input){
             status = 2;
             var result = addNewStudentModule.addNewStudent(studentsInfo, input);
             if(result === ''){
+                status = 1;
                 return '请按正确的格式输入（格式：姓名, 学号, 学科: 成绩, ...）：';
             }
             else{

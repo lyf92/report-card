@@ -17,7 +17,7 @@ function showReport(studentsInfo,studentsNo){
                 + getSubject(student.scores, '编程') + '|' + student.average + '|' + student.sumScore + '\n';
         });
 
-        result += '\n========================\n全班总分平均数：'
+        result += '========================\n全班总分平均数：'
             + report.averageOfAll + '\n全班总分中位数：' + report.medianOfAll;
 
         return result;
