@@ -25,4 +25,4 @@ class StudentContainer{
 
 module.exports.StudentContainer = StudentContainer;
 
-StudentContainer.init('张三, 00001, 汉族, 2, 语文:66, 数学:68, 英语:70',[]);
+//StudentContainer.init('张三, 00001, 汉族, 2, 语文:66, 数学:68, 英语:70',[]);

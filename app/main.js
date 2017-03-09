@@ -1,7 +1,5 @@
 var addNewStudentModule = require('../app/add_new_student');
-var judgeInfoModule = require('../app/judgeInfo');
 var showReportModule = require('../app/show_report');
-var Report = require('../app/model/report').Report;
 
 var status = 0;
 var studentsInfo = [];
@@ -25,12 +23,19 @@ function inputInfo(input){
                     return '请输入要打印的学生的学号（格式： 学号, 学号,...），按回车提交：';
                     break;
                 default:
+                    return '\n\n1. 添加学生\n2. 生成成绩单\n请输入你的选择（1～2）：';
             }
             break;
         case 1:
             status = 2;
-            console.log(addNewStudentModule.addNewStudent(studentsInfo, input));
-            return '学生xxx的成绩被添加\n\n1. 添加学生\n2. 生成成绩单\n3. 退出\n请输入你的选择（1～3）：';
+            var result = addNewStudentModule.addNewStudent(studentsInfo, input);
+            if(result === ''){
+                return '请按正确的格式输入（格式：姓名, 学号, 学科: 成绩, ...）：';
+            }
+            else{
+                studentsInfo = result;
+                return '学生' + input.split(',')[0] + '的成绩被添加\n\n1. 添加学生\n2. 生成成绩单\n3. 退出\n请输入你的选择（1～3）：';
+            }
             break;
         case 2:
             switch(input){
@@ -43,46 +48,33 @@ function inputInfo(input){
                     return '请输入要打印的学生的学号（格式： 学号, 学号,...），按回车提交：';
                     break;
                 case '3':
-                    return '.exit';
+                    process.exit();
                     break;
                 default:
+                    return '\n\n1. 添加学生\n2. 生成成绩单\n3. 退出\n请输入你的选择（1～3）：';
             }
             break;
         case 3:
-            if(judgeInfoModule.judgeStuNo(input)){
-                status = 2;
-                var report = new Report(studentsInfo);
-                report.averageOfAllStudent();
-                report.medianOfAllStudent();
-                return showReportModule.showReport(report, input);
-            }
-            else{
-                return '请按正确的格式输入要打印的学生的学号（格式： 学号, 学号,...），按回车提交：';
-            }
+            status = 2;
+            console.log(showReportModule.showReport(studentsInfo, input));
+            return '\n\n1. 添加学生\n2. 生成成绩单\n3. 退出\n请输入你的选择（1～3）：';
             break;
         default:
+            return '\n\n1. 添加学生\n2. 生成成绩单\n3. 退出\n请输入你的选择（1～3）：';
     }
-
-
-    /*switch(input){
-        case '1':
-            addNewStudentModule.addNewStudent(studentsInfo);
-            break;
-        case '2':
-            break;
-        default:
-    }*/
 }
-
 function main(){
     console.log("1. 添加学生\n2. 生成成绩单\n请输入你的选择（1～2）：");
 
     const repl = require('repl');
     const r = repl.start({
-        //ptompt: '',
         eval: myEval,
         writer: inputInfo
     });
 }
-
 main();
+
+
+//张三, 00001, 汉族, 2, 语文:66, 数学:68, 英语:70, 编程:90
+//李四, 00002, 汉族, 2, 语文:80, 数学:79, 英语:92, 编程:78
+//王五, 00003, 汉族, 3, 语文:100, 数学:64, 英语:71, 编程:61

@@ -8,7 +8,7 @@ class Report {
     averageOfAllStudent() {
         var sum = 0;
         this.studentsInfo.forEach(function(e){
-            sum += e.average;
+                sum += e.average;
         });
         this.averageOfAll = this.studentsInfo.length === 0 ? 0 : sum/this.studentsInfo.length;
     }
