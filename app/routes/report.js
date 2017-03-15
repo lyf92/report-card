@@ -18,12 +18,12 @@ function showReport(req, res){
         if(e){
             throw e;
         }
-        fs.read(fd, buf, 0, buf.length, 0, (e, bytes) => {
+        fs.readFile('../out', (e, data) => {
             if(e){
                 throw e;
             }
-            if(bytes > 0){
-                let allStudentInfo = buf.slice(0, bytes).toString().trim();
+            let allStudentInfo = data.toString().trim();
+            if(data.length > 0){
                 let all = allStudentInfo.split('\n');
                 all.forEach((e) => {
                     studentsInfo = StudentContainer.init(e, studentsInfo);
@@ -32,7 +32,7 @@ function showReport(req, res){
             fs.closeSync(fd);
             let result = showReportModule.showReport(studentsInfo, studentNo);
             if(result === 'error'){
-                res.render('show_report_err', {reportResult: '请按正确的格式输入要打印的学生的学号（格式： 学号, 学号,...），按回车提交：'});
+                res.render('show_report_err', {reportResult: '请按正确的格式输入要打印的学生的学号（格式： 学号, 学号,...），点击按钮提交'});
             }
             res.render('show_report_success', {reportResult: result});
         });

@@ -1,7 +1,11 @@
-<form action="number_submit" method="post">
-    请输入要打印的学生的学号（格式： 学号, 学号,...），按回车提交：
-    <br>
-    <input id="stuno" name="stuno">
-    <br>
-    <input type="submit">
+<link href="bootstrap.min.css" rel="stylesheet">
+<link href="mycssfile.css" rel="stylesheet">
+
+<form class="container" action="number_submit" method="post">
+    <div>
+        <label>请输入要打印的学生的学号（格式： 学号, 学号,...），点击按钮提交：</label>
+        <input id="stuno" class="form-control" name="stuno">
+        <br>
+        <button class="btn btn-default" type="submit">Submit</button>
+    </div>
 </form>

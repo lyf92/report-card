@@ -14,11 +14,11 @@ function showReport(studentsInfo,studentsNo){
         stuInfo.forEach(function(student){
             result += student.name + getSubject(student.scores, '数学')
                 + getSubject(student.scores, '语文') + getSubject(student.scores, '英语')
-                + getSubject(student.scores, '编程') + '|' + student.average + '|' + student.sumScore + '\n';
+                + getSubject(student.scores, '编程') + '|' + Math.round(student.average*10)/10 + '|' + Math.round(student.sumScore*10)/10 + '\n';
         });
 
         result += '========================\n全班总分平均数：'
-            + report.averageOfAll + '\n全班总分中位数：' + report.medianOfAll;
+            + Math.round(report.averageOfAll*10)/10 + '\n全班总分中位数：' + Math.round(report.medianOfAll*10)/10;
 
         return result;
     }
@@ -29,22 +29,24 @@ function getSubject(scores, subject){
     var result = '|-';
     scores.forEach(function(e){
         if(e.subject === subject){
-            result = '|' + e.score;
+            result = '|' + Math.round(e.score * 10)/10;
         }
     });
     return result;
 }
 
 function getStudentInfoByStuNo(studentsInfo,studentsNo){
+    studentsInfo.reverse();
     var stuInfo = [];
+    var stuInfoNo = [];
     var stuNo = studentsNo.split(', ');
 
     studentsInfo.forEach((e) => {
-        if(stuNo.indexOf(e.sno.trim()) >= 0){
+        if(stuNo.indexOf(e.sno.trim()) >= 0 && stuInfoNo.indexOf(e.sno.trim()) === -1){
+            stuInfoNo.push(e.sno.trim());
             stuInfo.push(e);
         }
     });
-
     return stuInfo;
 }
 
