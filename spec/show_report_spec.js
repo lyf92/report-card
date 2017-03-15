@@ -1,4 +1,4 @@
-var showReportModule = require('../app/show_report');
+var showReportModule = require('../app/public/show_report');
 var Student = require('../app/model/student').Student;
 
 describe("getSubject", function(){

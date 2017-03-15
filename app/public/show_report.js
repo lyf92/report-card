@@ -1,5 +1,5 @@
-var judgeInfoModule = require('../app/judgeInfo');
-var Report = require('../app/model/report').Report;
+var judgeInfoModule = require('./judgeInfo');
+var Report = require('../model/report').Report;
 
 function showReport(studentsInfo,studentsNo){
     if(judgeInfoModule.judgeStuNo(studentsNo)){
@@ -22,7 +22,7 @@ function showReport(studentsInfo,studentsNo){
 
         return result;
     }
-    return '请按正确的格式输入要打印的学生的学号（格式： 学号, 学号,...），按回车提交：';
+    return 'error';
 }
 
 function getSubject(scores, subject){
@@ -39,7 +39,7 @@ function getStudentInfoByStuNo(studentsInfo,studentsNo){
     var stuInfo = [];
     var stuNo = studentsNo.split(', ');
 
-    studentsInfo.forEach(function(e){
+    studentsInfo.forEach((e) => {
         if(stuNo.indexOf(e.sno.trim()) >= 0){
             stuInfo.push(e);
         }

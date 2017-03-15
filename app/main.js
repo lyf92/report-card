@@ -1,5 +1,5 @@
-var addNewStudentModule = require('../app/add_new_student');
-var showReportModule = require('../app/show_report');
+var addNewStudentModule = require('public/add_new_student');
+var showReportModule = require('public/show_report');
 
 var status = 0;
 var studentsInfo = [];

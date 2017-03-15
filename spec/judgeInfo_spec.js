@@ -1,4 +1,4 @@
-var judgeInfoModule = require('../app/judgeInfo');
+var judgeInfoModule = require('../app/public/judgeInfo');
 
 describe("judgeStuInfo test", function(){
 
