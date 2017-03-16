@@ -1,0 +1,36 @@
+<!--<link href="bootstrap.min.css" rel="stylesheet">-->
+<!--<link href="mycssfile.css" rel="stylesheet">-->
+
+<!--&lt;!&ndash;<form class="container"  action="add_submit" method="post">&ndash;&gt;-->
+<!--<div class="container">-->
+    <!--<label>请按正确的格式输入（格式：姓名, 学号, 学科: 成绩, ...）,点击按钮提交：</label>-->
+    <!--<input id="stu-info" class="form-control" name="stuinfo" />-->
+    <!--<br>-->
+    <!--<button id='btn1' class="btn btn-default">Submit</button>-->
+<!--</div>-->
+<!--&lt;!&ndash;</form>&ndash;&gt;-->
+<!--<script>-->
+    <!--$(document).ready(() => {-->
+        <!--$('#btn1').click(() => {-->
+            <!--$.ajax({-->
+                <!--type: "post",-->
+                <!--url: "/add_submit",-->
+                <!--data: {-->
+                    <!--stuInfo:$('#stu-info').val()-->
+                <!--},-->
+                <!--success: function(response) {-->
+                    <!--if(response === 'error') {-->
+                        <!--window.location.href = "./add_student_err";-->
+                    <!--}-->
+                    <!--else{-->
+                        <!--alert("学生" + response.name + '的成绩添加成功！');-->
+                        <!--window.location.href = "./main_with_quit";-->
+                    <!--}-->
+                <!--},-->
+                <!--error:function(response){-->
+                    <!--//window.location.href = "./add_student_err.ejs";-->
+                <!--}-->
+            <!--});-->
+        <!--});-->
+    <!--});-->
+<!--</script>-->

@@ -9,7 +9,7 @@ function studentMain(req, res) {
 }
 
 function addStudent(req, res){
-    var info = req.body.stuinfo;//req.params;
+    var info = req.body.stuInfo;//req.params;
     var studentName = info.split(', ')[0];
 
     if(judgeInfoModule.judgeStuInfo(info)) {
@@ -21,10 +21,12 @@ function addStudent(req, res){
                 fs.closeSync(fd);
             });
         });
-        res.render('add_student_success', {name: studentName});
+        //res.render('add_student_success', {name: studentName});
+        res.send({name: studentName});
     }
     else{
-        res.render('add_student_err');
+        //res.render('add_student_err');
+        res.send('error');
     }
 }
 

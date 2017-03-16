@@ -13,7 +13,7 @@ function showReport(req, res){
     let studentNo = req.body.stuno;
 
     let studentsInfo = [];
-    let buf = new Buffer(1024);
+    //let buf = new Buffer(1024);
     fs.open('../out', 'r+', (e, fd) => {
         if(e){
             throw e;
@@ -31,10 +31,11 @@ function showReport(req, res){
             }
             fs.closeSync(fd);
             let result = showReportModule.showReport(studentsInfo, studentNo);
-            if(result === 'error'){
+            res.send({reportResult: result});
+            /*if(result === 'error'){
                 res.render('show_report_err', {reportResult: '请按正确的格式输入要打印的学生的学号（格式： 学号, 学号,...），点击按钮提交'});
             }
-            res.render('show_report_success', {reportResult: result});
+            res.render('show_report_success', {reportResult: result});*/
         });
     });
 

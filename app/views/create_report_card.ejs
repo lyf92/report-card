@@ -1,11 +1,60 @@
 <link href="bootstrap.min.css" rel="stylesheet">
 <link href="mycssfile.css" rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
-<form class="container" action="number_submit" method="post">
-    <div>
-        <label>请输入要打印的学生的学号（格式： 学号, 学号,...），点击按钮提交：</label>
-        <input id="stuno" class="form-control" name="stuno">
-        <br>
-        <button class="btn btn-default" type="submit">Submit</button>
-    </div>
-</form>
+<!--<form class="container" action="number_submit" method="post">-->
+<div id="div1" class="container">
+    <label id="label1">请输入要打印的学生的学号（格式： 学号, 学号,...），点击按钮提交：</label>
+    <input id="stuno" class="form-control" name="stuno">
+    <br>
+    <button id="btn1" class="btn btn-default">Submit</button>
+</div>
+
+<div id="div2" class="container" hidden="hidden">
+    <pre id="pre1"></pre>
+    <button id="btn2" class="btn btn-default">Go Back</button>
+</div>
+<!--</form>-->
+
+<script>
+    $(document).ready(() => {
+        $('#btn1').click(() => {
+            $.ajax({
+                type: "post",
+                url: "/number_submit",
+                data: {
+                    stuno:$('#stuno').val()
+                },
+                success: function(response) {
+                    if(response.reportResult === 'error') {
+                        alert("学生学号输入有误！");
+                        $('#label1').html("请按正确的格式输入要打印的学生的学号（格式： 学号, 学号,...），点击按钮提交");
+                        //window.location.href = "./show_report_err";
+                    }
+                    else{
+                        $('#div1').hide();
+                        $('#div2').show();
+                        $('#pre1').html(response.reportResult);
+                        //window.location.href = "./show_report_success";
+                    }
+                },
+                error:function(response){
+                    //window.location.href = "./add_student_err.ejs";
+                }
+            });
+        });
+
+        $('#btn2').click(() => {
+            $.ajax({
+                type: "get",
+                url: "/",
+                success: function(){
+                    window.location.href = "/"
+                },
+                error: function(){
+
+                }
+            });
+        });
+    });
+</script>

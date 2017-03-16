@@ -17,7 +17,7 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(express.static('../public'));
 
-app.get('/', function(req, res){
+app.get('/', (req, res) => {
     res.render('main');
 });
 
@@ -25,15 +25,21 @@ app.get('/add_student', studentModule.studentMain);
 
 app.post('/add_submit', studentModule.addStudent);
 
-//app.post('/success', studentModule.studentMain);
+// app.get('/add_student_err', (req, res) => {
+//     res.render('add_student_err');
+// });
 
-app.get('/main_with_quit', function(req, res){
+app.get('/main_with_quit', (req, res) => {
     res.render('main_with_quit');
 });
 
 app.get('/create_report_card', reportModule.reportCardMain);
 
 app.post('/number_submit', reportModule.showReport);
+
+// app.post('/show_report_err', (req, res) => {
+//     res.render('show_report_err');
+// });
 
 
 app.listen(30002, () => {
