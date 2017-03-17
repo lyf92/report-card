@@ -36,7 +36,7 @@ function getSubject(scores, subject){
 }
 
 function getStudentInfoByStuNo(studentsInfo,studentsNo){
-    studentsInfo.reverse();
+    //studentsInfo.reverse();
     var stuInfo = [];
     var stuInfoNo = [];
     var stuNo = studentsNo.split(', ');

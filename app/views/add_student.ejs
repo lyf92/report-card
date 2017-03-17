@@ -22,7 +22,6 @@
                     if(response === 'error') {
                         alert("学生信息有误！");
                         $('#label1').html("请按正确的格式输入（格式：姓名, 学号, 学科: 成绩, ...）,点击按钮提交：");
-                        //window.location.href = "./add_student_err";
                     }
                     else{
                         alert("学生" + response.name + '的成绩添加成功！');
@@ -30,7 +29,6 @@
                     }
                 },
                 error:function(response){
-                    //window.location.href = "./add_student_err.ejs";
                 }
             });
         });

@@ -1,0 +1,84 @@
+<link href="bootstrap.min.css" rel="stylesheet">
+<link href="mycssfile.css" rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+<div class="container text-center">
+    <h2>修改信息</h2>
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>name</th>
+            <th>no</th>
+            <th>nation</th>
+            <th>math</th>
+            <th>chinese</th>
+            <th>english</th>
+            <th>coding</th>
+            <th>ave</th>
+            <th>sum</th>
+            <th>delete</th>
+            <th>edit</th>
+        </tr>
+        </thead>
+        <tbody id="tbody">
+
+        </tbody>
+    </table>
+</div>
+
+<script>
+    $.ajax({
+        type: "get",
+        url: "/get_all_student",
+        success: function(response){
+            var result = "";
+            for(var i = 0;i < response.length;i++){
+                result += '<tr>';
+                result += '<td>' + response[i].name + '</td>';
+                result += '<td>' + response[i].sno + '</td>';
+                result += '<td>' + response[i].nation + '</td>';
+                result += '<td>' + response[i].scores[0].score + '</td>';
+                result += '<td>' + response[i].scores[1].score + '</td>';
+                result += '<td>' + response[i].scores[2].score + '</td>';
+                result += '<td>' + response[i].scores[3].score + '</td>';
+                result += '<td>' + response[i].average + '</td>';
+                result += '<td>' + response[i].sumScore + '</td>';
+                result += "<td><a data-id=" + response[i].sno + " class='del btn btn-danger'>删除</a></td>";
+                result += "<td><a data-edit=" + response[i] + " class='edit btn btn-default'>编辑</a></td>";
+                result += '</tr>';
+            }
+            $('#tbody').html(result);
+        },
+        error: function(response){
+        }
+    });
+</script>
+
+<script>
+    $(document).ready(() => {
+        $('.del').click((e) => {
+            if(confirm("Delete this data?")) {
+                var no = e.target.getAttribute('data-id');
+
+                $.ajax({
+                    type: "delete",
+                    data: {'sno': no},
+                    url: "/delete_student",
+                    success: function (response) {
+                        window.location.reload();
+                    },
+                    error: function (response) {
+                    }
+                });
+            }
+        });
+    });
+</script>
+
+<script>
+    $(document).ready(() => {
+        $('.edit').click((e) => {
+            var student = e.target.getAttribute('data-edit');
+        });
+    });
+</script>
